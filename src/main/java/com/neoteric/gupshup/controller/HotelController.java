@@ -48,6 +48,6 @@ public class HotelController {
                 : bookingService.handleUserResponse(from, body);
 
         twiloService.sendMessage(from.replace("whatsapp:", ""), responseMessage);
-        return ResponseEntity.ok("✅ Message received and responded!");
+        return ResponseEntity.ok("");
     }
 }

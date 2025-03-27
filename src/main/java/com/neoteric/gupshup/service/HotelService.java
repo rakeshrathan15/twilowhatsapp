@@ -73,6 +73,8 @@ public class HotelService {
             }
         } catch (NumberFormatException e) {
             return "⚠️ Invalid input! Please enter a number.";
+
+
         }
     }
 
