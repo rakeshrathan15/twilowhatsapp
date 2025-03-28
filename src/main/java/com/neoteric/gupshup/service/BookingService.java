@@ -13,7 +13,7 @@ import java.util.Map;
 @Service
 public class BookingService {
 
-    private final Map<String, BookingSession> userSessions = new HashMap<>();
+   private final Map<String, BookingSession> userSessions = new HashMap<>();
     private final HotelService hotelService;
 
     @Autowired
@@ -25,6 +25,7 @@ public class BookingService {
 
     }
 
+
     public String startBookingSession(String from) {
         userSessions.put(from, new BookingSession());
         return "\uD83D\uDCCD Please select a city:\n" + hotelService.getLocationList();
@@ -35,6 +36,7 @@ public class BookingService {
             return "🌟 Welcome to Avoota Hotel Booking! 🌟\n" + "\n" + "\n" +
                     "Type 'Book' to start hotel booking.";
         }
+
 
         BookingSession session = userSessions.get(from);
 
@@ -83,7 +85,7 @@ public class BookingService {
                 return "⚠️ Please reply with 'Yes' to confirm or 'No' to modify your booking.";
             }
         } else {
-            return "You have already booked. Send 'book' to start a new booking.";
+            return " You have already booked. Send 'Book' to start a new booking.";
         }
     }
 
@@ -143,34 +145,6 @@ public class BookingService {
         twiloService.sendMessage("+917013776567", reviewMessage);
         return reviewMessage;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

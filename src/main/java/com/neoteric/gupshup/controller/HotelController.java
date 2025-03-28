@@ -1,4 +1,5 @@
 package com.neoteric.gupshup.controller;
+import com.neoteric.gupshup.model.SendMediaRequest;
 import com.neoteric.gupshup.model.SendMessageRequest;
 import com.neoteric.gupshup.service.BookingService;
 import com.neoteric.gupshup.service.TwiloService;
@@ -50,4 +51,18 @@ public class HotelController {
         twiloService.sendMessage(from.replace("whatsapp:", ""), responseMessage);
         return ResponseEntity.ok("");
     }
+
+
+    @PostMapping("/sendMedia")
+    public ResponseEntity<String> sendMedia(@RequestBody SendMediaRequest request) {
+        if (request.getTo() == null || request.getMediaUrl() == null) {
+            return ResponseEntity.badRequest().body("❌ 'to' and 'mediaUrl' fields are required.");
+        }
+
+        String response = twiloService.sendMediaMessage(request.getTo(), request.getMediaUrl(), request.getMessage());
+        return ResponseEntity.ok(response);
+
+    }
+
+
 }
